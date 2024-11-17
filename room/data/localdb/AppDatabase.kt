@@ -10,12 +10,7 @@ import com.uvg.labfinal.room.data.localdb.entity.CryptoAssetEntity
 
 @Database(entities = [CryptoAssetEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun cryptoAssetDao(): CryptoAssetDao
-    companion object {
-        @Volatile
-        private var INSTANCE: AppDatabase? = null
-
-        fun getDatabase(context: Context): AppDatabase {
+    fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
